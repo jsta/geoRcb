@@ -16,9 +16,7 @@
 #'costsurf<-reclassify(costsurf,c(aggfac+1,Inf,NA))
 #'costsurf<-aggregate(costsurf,aggfac,expand=T,fun=max,na.rm=T)
 #'
-#'
-#'
-#'res<-distmatGen(obs,costsurf,ret="o")
+#'res<-distmatGen(obs,costsurf,ret="l")
 #'plot(dd.distmat[,51],res[,51],ylim=c(0,600),xlim=c(0,600))
 #'2
 #'
@@ -53,7 +51,7 @@ distmatGen<-function(pts,costsurf,ret){
     #lret<-diag(0,nrow=nrow(tocoords))
     lret.c<-matrix(costDistance(tr,fromcoords,tocoords),nrow=nrow(fromcoords))#CANNOT ALLOCATE ENOUGH MEMORY
     #lret[lower.tri(lret)]<-lret.c
-    lret<-lret.c
+    lret<-t(lret.c)
     }
 
   if(ret=="b"){
