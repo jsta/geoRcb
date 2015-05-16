@@ -44,6 +44,24 @@
 #'                    obj.model=vgmdl.dmat)
 #' kc1<-krige.conv(obs.gd,locations=coordinates(loc), krige=KC,
 #'                 dd.dists.mat=dd.distmat, dl.dists.mat=dl.distmat)
+#'
+#'#####visualize output####
+#'pred.std<-data.frame(kc1.std$predict)
+#'pred<-data.frame(kc1$predict)
+#'coordinates(pred.std)<-coordinates(loc)
+#'coordinates(pred)<-coordinates(loc)
+#'
+#'r<-raster(nrows=40,ncols=40,resolution=1)
+#'r<-setExtent(r,extent(loc))
+#'r.std<-rasterize(pred.std,r,background=NA)
+#'r<-rasterize(pred,r,background=NA)
+#'
+#'par(mfrow=c(1,3))
+#'plot(subset(r.std,2),main="Euclidean Distance")
+#'plot(subset(r,2),main="Cost Distance")
+#'plot(subset(r,2)-subset(r.std,2),main="Difference")
+#'
+
 "krige.conv" <-
   function (geodata, coords=geodata$coords, data=geodata$data,
             locations, borders, krige, output,
