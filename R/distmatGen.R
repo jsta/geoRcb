@@ -6,12 +6,11 @@
 #'@param pts A SpatialPointsDataFrame with a defined projection
 #'@param costsurf cost surface Raster
 #'@param ret specify whether to return distances between obs-obs ("o"), obs-loc ("l"), or both ("b")
-#'@details If a cost surface raster is not supplied a uniform (cost 1) grid will be generated to match to bounding box of pts
 #'@example
 #'data(noise)
 #'r<-raster(nrows=40,ncols=40,resolution=1)
 #'r<-setExtent(r,extent(obs),keepres=T)
-#'aggfac<-5
+#'aggfac<-2
 #'costsurf<-rasterize(malilla,r,background=aggfac,field=rep(10000,length(polygons(malilla))))
 #'costsurf<-reclassify(costsurf,c(aggfac+1,Inf,NA))
 #'costsurf<-aggregate(costsurf,aggfac,expand=T,fun=max,na.rm=T)
